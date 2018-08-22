@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">debugBanner</string>
+    <string name="banner_default_text_debug">DEBUG</string>
 </resources>

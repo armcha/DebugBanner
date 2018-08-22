@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 
 class DebugBannerView(context: Context, attrs: AttributeSet? = null)
@@ -13,30 +14,39 @@ class DebugBannerView(context: Context, attrs: AttributeSet? = null)
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.RED }
     private val path: Path = Path()
-    private val textView: TextView = TextView(context)
-    private var bannerHeight: Float = 0f
+    private val textView: TextView by lazy { TextView(context) }
+    private val bannerHeight: Float by lazy { dip(30).toFloat() }
 
     init {
-        textView.text = "DEBUG"
-        textView.setTextColor(Color.BLACK)
-        textView.includeFontPadding = false
-        textView.rotation = -45f
-        textView.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-        textView.textSize = 15f
+        textView.apply {
+            setTextColor(Color.BLACK)
+            includeFontPadding = false
+            rotation = -45f
+            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+            textSize = 15f
+        }
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER)
         addView(textView, layoutParams)
         setBackgroundColor(Color.TRANSPARENT)
-        elevation = 30f
+        safeElevation = 30f
+    }
+
+    fun updateText(text: String, textColor: Int) {
+        textView.text = text
+        textView.setTextColor(ContextCompat.getColor(context, textColor))
+    }
+
+    fun updateBannerColor(bannerColor: Int) {
+        paint.color = ContextCompat.getColor(context, bannerColor)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        bannerHeight = dip(30).toFloat()
-        textView.x = (height / 2f - bannerHeight / 4)
-        textView.y = (height / 2f - bannerHeight / 4)
+        if (textView.x == 0f) {
+            textView.x = (height / 2f - bannerHeight / 4)
+            textView.y = (height / 2f - bannerHeight / 4)
+        }
     }
-
-    fun dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)

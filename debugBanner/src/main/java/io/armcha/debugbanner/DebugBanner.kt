@@ -5,11 +5,11 @@ import android.app.Application
 import android.os.Bundle
 import android.view.ViewGroup
 
-class DebugBanner private constructor(app: Application) : Application.ActivityLifecycleCallbacks by ActivityEmptyLifecycleCallbacks() {
+class DebugBanner private constructor(app: Application, private val banner: Banner) : Application.ActivityLifecycleCallbacks by ActivityEmptyLifecycleCallbacks() {
 
     companion object {
-        fun init(app: Application) {
-            DebugBanner(app)
+        fun init(application: Application, banner: Banner = Banner()) {
+            DebugBanner(application, banner)
         }
     }
 
@@ -24,7 +24,10 @@ class DebugBanner private constructor(app: Application) : Application.ActivityLi
         val decorView = activity.window.decorView as ViewGroup
         fun dip(value: Int): Int = (value * activity.resources.displayMetrics.density).toInt()
         val params = ViewGroup.LayoutParams(dip(70), dip(70))
-        decorView.addView(DebugBannerView(activity), params)
+        val debugBannerView = DebugBannerView(activity).apply {
+            updateText(banner.bannerText, banner.textColor)
+            updateBannerColor(banner.bannerColor)
+        }
+        decorView.addView(debugBannerView, params)
     }
-
 }
