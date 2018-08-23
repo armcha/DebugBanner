@@ -15,7 +15,8 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.RED }
     private val path: Path = Path()
     private val textView: TextView by lazy { TextView(context) }
-    private val bannerHeight: Float by lazy { dip(30).toFloat() }
+    private val bannerHeight: Float by lazy { dip(25).toFloat() }
+    var bannerGravity: BannerGravity = BannerGravity.START
 
     init {
         textView.apply {
@@ -23,7 +24,7 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
             includeFontPadding = false
             rotation = -45f
             typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-            textSize = 15f
+            textSize = 13f
         }
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER)
         addView(textView, layoutParams)
@@ -43,8 +44,12 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (textView.x == 0f) {
-            textView.x = (height / 2f - bannerHeight / 4)
-            textView.y = (height / 2f - bannerHeight / 4)
+            textView.x = -bannerHeight / 4
+            textView.y = -bannerHeight / 4
+            if (bannerGravity == BannerGravity.END) {
+                rotation = 90f
+                translationX = context.getScreenWidth() - measuredHeight
+            }
         }
     }
 

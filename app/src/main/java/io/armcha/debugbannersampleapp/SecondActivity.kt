@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.armcha.debugbanner.Banner
+import io.armcha.debugbanner.BannerGravity
 import io.armcha.debugbanner.BannerView
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -21,6 +22,7 @@ class SecondActivity : AppCompatActivity(), BannerView {
         return Banner(
                 bannerText = "BETA",
                 bannerColorRes = R.color.yellow,
-                textColorRes = android.R.color.black)
+                textColorRes = android.R.color.black,
+                bannerGravity = BannerGravity.END)
     }
 }

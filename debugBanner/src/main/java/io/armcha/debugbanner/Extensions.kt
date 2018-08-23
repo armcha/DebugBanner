@@ -2,8 +2,11 @@ package io.armcha.debugbanner
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Point
 import android.os.Build
 import android.view.View
+import android.view.WindowManager
+
 
 internal fun View.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
@@ -24,3 +27,12 @@ internal var View.safeElevation: Float
     }
 
 internal fun Context.dip(value: Int): Float = value * resources.displayMetrics.density
+
+fun Context.getScreenWidth(): Float {
+    val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val display = wm.defaultDisplay
+    val size = Point()
+    display.getSize(size)
+    return size.x.toFloat()
+}
+

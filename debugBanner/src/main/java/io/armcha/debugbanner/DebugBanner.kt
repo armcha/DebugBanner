@@ -31,14 +31,10 @@ class DebugBanner private constructor(app: Application, private var banner: Bann
         val debugBannerView = DebugBannerView(activity).apply {
             updateText(localBanner.bannerText, localBanner.textColorRes)
             updateBannerColor(localBanner.bannerColorRes)
+            bannerGravity = localBanner.bannerGravity
         }
         val bannerSize = activity.resources.getDimension(R.dimen.banner_default_size_debug).toInt()
         val params = ViewGroup.LayoutParams(bannerSize, bannerSize)
         decorView.addView(debugBannerView, params)
     }
-}
-
-fun Activity.banner(body: Banner.() -> Unit):Banner {
-
-    return Banner()
 }
