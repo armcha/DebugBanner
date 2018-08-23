@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="banner_default_size_debug">70dp</dimen>
+</resources>

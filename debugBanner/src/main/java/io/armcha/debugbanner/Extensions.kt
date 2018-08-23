@@ -1,16 +1,16 @@
 package io.armcha.debugbanner
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.view.View
 
-fun View.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+internal fun View.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
-val isAtLeastLollipop: Boolean
+internal val isAtLeastLollipop: Boolean
     get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
-
-var View.safeElevation: Float
+internal var View.safeElevation: Float
     @SuppressLint("NewApi")
     get() {
         return if (isAtLeastLollipop)
@@ -22,3 +22,5 @@ var View.safeElevation: Float
         if (isAtLeastLollipop)
             elevation = value
     }
+
+internal fun Context.dip(value: Int): Float = value * resources.displayMetrics.density

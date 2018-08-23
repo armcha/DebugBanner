@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 
-class DebugBannerView(context: Context, attrs: AttributeSet? = null)
+internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
     : FrameLayout(context, attrs) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.RED }

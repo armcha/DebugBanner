@@ -18,6 +18,9 @@ class SecondActivity : AppCompatActivity(), BannerView {
     }
 
     override fun createBanner(): Banner {
-        return Banner(bannerText = "BETA")
+        return Banner(
+                bannerText = "BETA",
+                bannerColorRes = R.color.yellow,
+                textColorRes = android.R.color.black)
     }
 }

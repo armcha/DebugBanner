@@ -1,7 +1,6 @@
 package io.armcha.debugbannersampleapp
 
 import android.app.Application
-import io.armcha.debugbanner.Banner
 import io.armcha.debugbanner.DebugBanner
 
 
@@ -15,7 +14,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DebugBanner.init(
-                application = this)
+        DebugBanner.init(application = this)
     }
 }
