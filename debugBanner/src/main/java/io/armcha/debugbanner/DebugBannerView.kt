@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 
 
 internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
@@ -15,7 +16,7 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.RED }
     private val path: Path = Path()
     private val textView: TextView by lazy { TextView(context) }
-    private val bannerHeight: Float by lazy { dip(25).toFloat() }
+    private val bannerHeight: Float by lazy { dip(30).toFloat() }
     var bannerGravity: BannerGravity = BannerGravity.START
 
     init {
@@ -29,7 +30,7 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER)
         addView(textView, layoutParams)
         setBackgroundColor(Color.TRANSPARENT)
-        safeElevation = 30f
+        ViewCompat.setElevation(this, 30f)
     }
 
     fun updateText(text: String, textColor: Int) {
@@ -54,12 +55,12 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
     }
 
     override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        path.moveTo(width - bannerHeight, 0f)
-        path.lineTo(width.toFloat(), 0f)
-        path.lineTo(0f, height.toFloat())
-        path.lineTo(0f, height - bannerHeight)
-        path.close()
-        canvas?.drawPath(path, paint)
+        canvas?.drawPath(path.apply {
+            moveTo(width - bannerHeight, 0f)
+            lineTo(width.toFloat(), 0f)
+            lineTo(0f, height.toFloat())
+            lineTo(0f, height - bannerHeight)
+            close()
+        }, paint)
     }
 }

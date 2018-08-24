@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import android.view.ViewGroup
 
+
 class DebugBanner private constructor(app: Application, private var banner: Banner) : Application.ActivityLifecycleCallbacks by ActivityEmptyLifecycleCallbacks() {
 
     companion object {
@@ -34,7 +35,13 @@ class DebugBanner private constructor(app: Application, private var banner: Bann
             bannerGravity = localBanner.bannerGravity
         }
         val bannerSize = activity.resources.getDimension(R.dimen.banner_default_size_debug).toInt()
-        val params = ViewGroup.LayoutParams(bannerSize, bannerSize)
+        val params = ViewGroup.MarginLayoutParams(bannerSize, bannerSize)
         decorView.addView(debugBannerView, params)
+
+        //Small hack for pre lollipop devices,
+        //there is no problem for getting status bar height in this way,
+        //because we use it only for pre lollipop devices, and I know about windowInstets :D
+        if (!isAtLeastLollipop)
+            debugBannerView.translationY = activity.getStatusBarHeight()
     }
 }

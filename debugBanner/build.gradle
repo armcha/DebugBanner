@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.2"
-
 
     defaultConfig {
         minSdkVersion 16
@@ -27,6 +27,16 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+publish {
+    userOrg = 'armcha'
+    groupId = 'com.github.armcha'
+    artifactId = 'DebugBanner'
+    publishVersion = '0.0.1'
+    desc = 'A simple banner to show an info while an app is in development'
+    website = 'https://github.com/armcha/DebugBanner'
+}
+
 repositories {
     maven {
         url 'http://dl.bintray.com/kotlin/kotlin-eap'
