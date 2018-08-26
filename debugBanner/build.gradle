@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'guru.stefma.bintrayrelease'
 
 android {
     compileSdkVersion 28
@@ -15,31 +15,29 @@ android {
 
     buildTypes {
         release {
+            tasks.withType(Javadoc).all { enabled = false }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
 }
 
+version = "1.0.0"
+group = "com.github.armcha"
 publish {
     userOrg = 'armcha'
-    groupId = 'com.github.armcha'
     artifactId = 'DebugBanner'
-    publishVersion = '0.0.1'
     desc = 'A simple banner to show an info while an app is in development'
     website = 'https://github.com/armcha/DebugBanner'
-}
-
-repositories {
-    maven {
-        url 'http://dl.bintray.com/kotlin/kotlin-eap'
-    }
-    mavenCentral()
 }
