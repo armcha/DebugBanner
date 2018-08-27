@@ -1,7 +1,7 @@
 package io.armcha.debugbannersampleapp
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 
 class ThirdActivity : AppCompatActivity() {
 
