@@ -1,6 +1,6 @@
 # DebugBanner
 
-Debug banner allows you to attach debug (:bug:) flag on all your activities, just by one line of code.
+Debug banner lib allows you to attach debug (:bug:) banner on all your activities, just by one line of code.
 
 ![](screenshots/banner.png)
 
@@ -35,7 +35,7 @@ Add it on your application onCreate
                     banner = Banner(bannerText = "BETA"))
 ```
 
-2. You can change banner attributes only for one activity, for it you just need to implement BannerView interface
+2. You can change banner attributes only for one activity. For doing this you just need to implement BannerView interface
 ```kotlin
    class ExampleActivity : AppCompatActivity(), BannerView {
 
