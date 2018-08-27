@@ -1,7 +1,7 @@
 package io.armcha.debugbannersampleapp
 
 import android.app.Application
-import io.armcha.debugbanner.DebugBanner
+import io.armcha.debugBanner.DebugBanner
 
 
 /**

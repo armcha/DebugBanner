@@ -1,4 +1,4 @@
-package io.armcha.debugbanner
+package io.armcha.debugBanner
 
 interface BannerView {
 

@@ -1,4 +1,4 @@
-package io.armcha.debugbanner
+package io.armcha.debugBanner
 
 import android.support.annotation.ColorRes
 
