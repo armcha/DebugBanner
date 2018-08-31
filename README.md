@@ -14,7 +14,7 @@ The current minSDK version is API level 16.
 -----------------------
 Gradle:
 ```groovy
-implementation 'com.github.armcha:DebugBanner:1.0.0'
+implementation 'com.github.armcha:DebugBanner:1.0.4'
 ```
 ## Setup and usage
 
