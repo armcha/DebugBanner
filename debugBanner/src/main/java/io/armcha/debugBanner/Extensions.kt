@@ -12,9 +12,7 @@ internal fun View.dip(value: Int): Int = (value * resources.displayMetrics.densi
 internal val isAtLeastLollipop: Boolean
     get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
-internal fun Context.dip(value: Int): Float = value * resources.displayMetrics.density
-
-fun Context.getScreenWidth(): Float {
+internal fun Context.getScreenWidth(): Float {
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = wm.defaultDisplay
     val size = Point()
@@ -22,7 +20,7 @@ fun Context.getScreenWidth(): Float {
     return size.x.toFloat()
 }
 
-fun Context.getStatusBarHeight(): Float {
+internal fun Context.getStatusBarHeight(): Float {
     var result = 0
     val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
     if (resourceId > 0) {

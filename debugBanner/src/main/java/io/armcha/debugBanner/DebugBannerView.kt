@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.AppCompatTextView
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.FrameLayout
@@ -24,12 +26,16 @@ internal class DebugBannerView(context: Context, attrs: AttributeSet? = null)
             includeFontPadding = false
             rotation = -45f
             typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-            textSize = 13f
+            textSize = 12f
+            setSingleLine()
+            ellipsize = TextUtils.TruncateAt.END
         }
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER)
+        layoutParams.setMargins(dip(5),0,dip(5),0)
         addView(textView, layoutParams)
         setBackgroundColor(Color.TRANSPARENT)
         ViewCompat.setElevation(this, 30f)
+        isClickable = false
     }
 
     fun updateText(text: String, textColor: Int) {
