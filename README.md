@@ -2,6 +2,8 @@
 
 Debug banner lib allows you to attach debug (:bug:) banner on all your activities, just by one line of code.
 
+[ ![Download](https://api.bintray.com/packages/armcha/maven/DebugBanner/images/download.svg) ](https://bintray.com/armcha/maven/DebugBanner/_latestVersion)
+
 ![](screenshots/banner.png)
 
 ![](screenshots/firstScreen.png)
