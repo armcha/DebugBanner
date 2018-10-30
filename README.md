@@ -63,8 +63,6 @@ Pull requests are more than welcome.
 
 :arrow_forward:  **Twitter**: https://twitter.com/ArmanChatikyan
 
-:arrow_forward:  **Facebook**: https://web.facebook.com/chatikyana
-
 :arrow_forward:  **Google +**: https://plus.google.com/+ArmanChatikyan
 
 :arrow_forward:  **Website**: https://armcha.github.io/
